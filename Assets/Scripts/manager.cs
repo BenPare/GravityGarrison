@@ -89,6 +89,17 @@ public class manager : MonoBehaviour
             }
         }
 
+        if (sceneName == "Level 4")
+        {
+            if (posX >= 7 && posX <= 10 && posY <= 0.5 && posY >= -1)//these should be coordinates for where the goal is
+            {
+                winText.gameObject.SetActive(true);
+                reText.gameObject.SetActive(true);
+                conText.gameObject.SetActive(true);
+                winFlag = true;
+            }
+        }
+
         if (winFlag == true) //set the winflag true when we win, if we have won then the user has the ability to reload the scene
         {
             if (Input.GetKey(KeyCode.R) && sceneName == "Level 1")
@@ -114,6 +125,16 @@ public class manager : MonoBehaviour
             if (Input.GetKey(KeyCode.R) && sceneName == "Level 3")
             {
                 SceneManager.LoadScene("Level 3");
+            }
+
+            if (Input.GetKey(KeyCode.C) && sceneName == "Level 3")
+            {
+                SceneManager.LoadScene("Level 4");
+            }
+
+            if (Input.GetKey(KeyCode.R) && sceneName == "Level 4")
+            {
+                SceneManager.LoadScene("Level 4");
             }
         }
 

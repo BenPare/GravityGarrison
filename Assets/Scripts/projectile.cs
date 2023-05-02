@@ -31,7 +31,7 @@ public class projectile : MonoBehaviour
         float posX = transform.position.x; //not being used here
 
 
-        if (sceneName == "Level 1" || sceneName == "Level 2") //level 1 and 2 split on the x axis
+        if (sceneName == "Level 1" || sceneName == "Level 2") //level 1 and 2 split on the x axis in the same way
         {
             if (posY >= 0)//invert the gravity if we are above 0 on the Y axis
                 Physics.gravity = invert;
@@ -40,9 +40,18 @@ public class projectile : MonoBehaviour
                 Physics.gravity = norm;
         }
 
-        if (sceneName == "Level 3") //level 3 splits on the y axis instead of on the y axis
+        if (sceneName == "Level 3") //level 3 splits on the y axis instead of on the x axis
         {
             if (posX >= 0)//invert the gravity if we are above 0 on the Y axis
+                Physics.gravity = invert;
+
+            else//gravity is normal if we are below 0 on the X axis
+                Physics.gravity = norm;
+        }
+
+        if (sceneName == "Level 4") //level 3 splits on the y axis but the colors are reversed from level 3
+        {
+            if (posX <= 0)//invert the gravity if we are above 0 on the Y axis
                 Physics.gravity = invert;
 
             else//gravity is normal if we are below 0 on the X axis
