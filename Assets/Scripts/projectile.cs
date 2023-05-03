@@ -22,8 +22,10 @@ public class projectile : MonoBehaviour
         // Retrieve the name of this scene.
         sceneName = currentScene.name;
 
-        if (sceneName == "Level 1" || sceneName == "Level 2" || sceneName == "Level 3") //we can set the gravity to default on startup just for the levels with cannon in white just to be safe
+        if (sceneName == "Level 1" || sceneName == "Level 2" || sceneName == "Level 3" || sceneName == "Level 5") //we can set the gravity to default on startup just for the levels with cannon in white just to be safe
             Physics.gravity = norm;
+        else
+            Physics.gravity = invert;
     }
 
     // Update is called once per frame
@@ -52,7 +54,7 @@ public class projectile : MonoBehaviour
                 Physics.gravity = norm;
         }
 
-        if (sceneName == "Level 4") //level 3 splits on the y axis but the colors are reversed from level 3
+        if (sceneName == "Level 4") //level 4 splits on the y axis but the colors are reversed from level 3
         {
             if (posX <= 0)//invert the gravity if we are above 0 on the Y axis
                 Physics.gravity = invert;
@@ -61,15 +63,18 @@ public class projectile : MonoBehaviour
                 Physics.gravity = norm;
         }
 
-        if (sceneName == "Level 5" && Input.GetKey(KeyCode.S) && Time.time > shiftFlag) //level 3 splits on the y axis but the colors are reversed from level 3
+        if (sceneName == "Level 5" || sceneName == "Level 6") //level 5 does not split.  Inverse the gravity when the player presses s with a cooldown of a quarter second
         {
-            if (Physics.gravity == invert)//invert the gravity if we are above 0 on the Y axis
-                Physics.gravity = norm;
+            if (Input.GetKey(KeyCode.S) && Time.time > shiftFlag)
+            {
+                if (Physics.gravity == invert)//invert the gravity if we are above 0 on the Y axis
+                    Physics.gravity = norm;
 
-            else//gravity is normal if we are below 0 on the X axis
-                Physics.gravity = invert;
+                else//gravity is normal if we are below 0 on the X axis
+                    Physics.gravity = invert;
 
-            shiftFlag = Time.time + shift; //set wait and flag to be zero
+                shiftFlag = Time.time + shift;
+            }
         }
     }
 }

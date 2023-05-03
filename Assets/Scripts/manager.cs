@@ -12,6 +12,7 @@ public class manager : MonoBehaviour
     public TextMeshPro winText;
     public TextMeshPro reText;
     public TextMeshPro conText;
+    public TextMeshPro impText;
 
     public float posY;
     public float posX;
@@ -82,6 +83,18 @@ public class manager : MonoBehaviour
             }
         }
 
+        if (sceneName == "Level 6")
+        {
+            if (posX >= 8.5 && posX <= 11 && posY <= -3 && posY >= -5)//these should be coordinates for where the goal is
+            {
+                winText.gameObject.SetActive(true);
+                reText.gameObject.SetActive(true);
+                conText.gameObject.SetActive(true);
+                winFlag = true;
+                impText.gameObject.SetActive(false);
+            }
+        }
+
         if (winFlag == true) //set the winflag true when we win, if we have won then the user has the ability to reload the scene
         {
             if (Input.GetKey(KeyCode.R) && sceneName == "Level 1")
@@ -127,6 +140,16 @@ public class manager : MonoBehaviour
             if (Input.GetKey(KeyCode.R) && sceneName == "Level 5")
             {
                 SceneManager.LoadScene("Level 5");
+            }
+
+            if (Input.GetKey(KeyCode.C) && sceneName == "Level 5")
+            {
+                SceneManager.LoadScene("Level 6");
+            }
+
+            if (Input.GetKey(KeyCode.R) && sceneName == "Level 6")
+            {
+                SceneManager.LoadScene("Level 6");
             }
         }
 

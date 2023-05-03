@@ -37,7 +37,7 @@ public class cannon : MonoBehaviour
         {
             Destroy(ball);
 
-            wFlag = Time.time + wait; //set wait and flag to be zero
+            wFlag = Time.time + wait; //set the flag to be the current time plus our wait time.  the current time will have to iterate to the value of the current time plus the wait time before we can fire again
 
             ball = Instantiate(projectile, transform.position, transform.rotation);
 
