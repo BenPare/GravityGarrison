@@ -10,6 +10,9 @@ public class projectile : MonoBehaviour
 
     public string sceneName;
 
+    public float shift = 0.25f; //shift every quarter second max
+    public float shiftFlag = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +59,17 @@ public class projectile : MonoBehaviour
 
             else//gravity is normal if we are below 0 on the X axis
                 Physics.gravity = norm;
+        }
+
+        if (sceneName == "Level 5" && Input.GetKey(KeyCode.S) && Time.time > shiftFlag) //level 3 splits on the y axis but the colors are reversed from level 3
+        {
+            if (Physics.gravity == invert)//invert the gravity if we are above 0 on the Y axis
+                Physics.gravity = norm;
+
+            else//gravity is normal if we are below 0 on the X axis
+                Physics.gravity = invert;
+
+            shiftFlag = Time.time + shift; //set wait and flag to be zero
         }
     }
 }

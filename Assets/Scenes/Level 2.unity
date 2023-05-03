@@ -455,7 +455,7 @@ MonoBehaviour:
   speed: 20
   projectile: {fileID: 3322466025206377799, guid: f97e7e9c3037f024293291a3abbedc68, type: 3}
   launch: 700
-  wait: 0
+  wait: 3
   wFlag: 10
   ball: {fileID: 0}
 --- !u!212 &672750390

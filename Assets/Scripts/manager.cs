@@ -16,11 +16,6 @@ public class manager : MonoBehaviour
     public float posY;
     public float posX;
 
-    public float wait = 0f; //wait and flag will keep track of shooting cooldown
-    public float wFlag = 10f;
-
-    public bool sFlag = false;
-
     public bool winFlag = false;
 
     public string sceneName;
@@ -39,24 +34,11 @@ public class manager : MonoBehaviour
     void Update()
     {
 
-        wait = wait + 1;
+        ball = GameObject.Find("Ball(Clone)");
+        posY = ball.transform.position.y;
+        posX = ball.transform.position.x;
 
-        wFlag = wait * Time.deltaTime;
-
-        if (Input.GetKey(KeyCode.W) && wFlag >= 10) //with this check taken from cannon, it only throws a null pointer on the frame before the user presses w rather than every single frame before the user presses w
-        {
-            sFlag = true;
-        }
-
-        if (sFlag == true)
-        {
-            ball = GameObject.Find("Ball(Clone)");
-
-            posY = ball.transform.position.y;
-            posX = ball.transform.position.x;
-        }
-
-        if (sceneName == "Level 1")
+        if (sceneName == "Level 1" || sceneName == "Level 5")
         {
             if (posX >= 8 && posX <= 11 && posY <= -3 && posY >= -5)//these should be coordinates for where the goal is
             {
@@ -135,6 +117,16 @@ public class manager : MonoBehaviour
             if (Input.GetKey(KeyCode.R) && sceneName == "Level 4")
             {
                 SceneManager.LoadScene("Level 4");
+            }
+
+            if (Input.GetKey(KeyCode.C) && sceneName == "Level 4")
+            {
+                SceneManager.LoadScene("Level 5");
+            }
+
+            if (Input.GetKey(KeyCode.R) && sceneName == "Level 5")
+            {
+                SceneManager.LoadScene("Level 5");
             }
         }
 
